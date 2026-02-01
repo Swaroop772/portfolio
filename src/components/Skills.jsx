@@ -1,59 +1,81 @@
 import React from 'react';
-import SpotlightCard from './ui/SpotlightCard';
+import { motion } from 'framer-motion';
 
 const Skills = () => {
     const skillCategories = [
         {
-            title: "Technical Skills",
+            title: "Technical Stack",
+            color: "from-neon-blue to-cyan-400",
             skills: [
                 { name: "Python", level: 95 },
-                { name: "Artificial Intelligence (AI)", level: 75 },
-                { name: "Machine Learning (ML)", level: 75 },
-                { name: "Microsoft 365 tools", level: 85 },
-                { name: "AI tools", level: 90 },
-                { name: "Git and GitHub", level: 80 },
+                { name: "Artificial Intelligence", level: 85 },
+                { name: "Machine Learning", level: 80 },
+                { name: "Git & GitHub", level: 90 },
             ]
         },
         {
-            title: "Soft Skills",
+            title: "Core Competencies",
+            color: "from-neon-purple to-pink-500",
             skills: [
-                { name: "Analytical", level: 90 },
-                { name: "Collaborator", level: 90 },
-                { name: "Leader", level: 85 },
-                { name: "Adaptable", level: 90 },
+                { name: "Analytical Thinking", level: 90 },
+                { name: "Problem Solving", level: 95 },
+                { name: "Team Leadership", level: 85 },
+                { name: "Adaptability", level: 90 },
             ]
         }
     ];
 
     return (
-        <section id="skills" className="py-20 bg-slate-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Skills</h2>
-                    <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
-                </div>
+        <section id="skills" className="py-24 relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5 -skew-y-3 z-0"></div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+                        My <span className="text-blue-500 dark:text-neon-blue">Ars</span>enal
+                    </h2>
+                    <p className="text-slate-600 dark:text-gray-400">Tools and technologies I use to build the future.</p>
+                </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {skillCategories.map((category, index) => (
-                        <SpotlightCard key={index} className="rounded-xl p-8">
-                            <h3 className="text-xl font-bold text-white mb-6 text-center">{category.title}</h3>
-                            <div className="space-y-6">
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.2 }}
+                            className="bg-white/60 dark:bg-secondary/40 backdrop-blur-md border border-slate-200 dark:border-glass-border rounded-3xl p-8 hover:bg-white/80 dark:hover:bg-secondary/60 transition-colors group shadow-lg dark:shadow-none"
+                        >
+                            <h3 className={`text-2xl font-bold mb-8 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                                {category.title}
+                            </h3>
+                            <div className="space-y-8">
                                 {category.skills.map((skill, idx) => (
-                                    <div key={idx}>
-                                        <div className="flex justify-between mb-2">
-                                            <span className="text-gray-300 font-medium">{skill.name}</span>
-                                            <span className="text-accent text-sm">{skill.level}%</span>
+                                    <div key={idx} className="relative">
+                                        <div className="flex justify-between mb-2 text-sm font-semibold text-gray-300">
+                                            <span>{skill.name}</span>
+                                            <span>{skill.level}%</span>
                                         </div>
-                                        <div className="w-full bg-slate-700 rounded-full h-2.5">
-                                            <div
-                                                className="bg-gradient-to-r from-blue-500 to-purple-600 h-2.5 rounded-full transition-all duration-1000 ease-out"
-                                                style={{ width: `${skill.level}%` }}
-                                            ></div>
+                                        <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: `${skill.level}%` }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                                                className={`h-full rounded-full bg-gradient-to-r ${category.color} relative`}
+                                            >
+                                                <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/50 animate-pulse"></div>
+                                            </motion.div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        </SpotlightCard>
+                        </motion.div>
                     ))}
                 </div>
             </div>
