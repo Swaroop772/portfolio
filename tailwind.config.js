@@ -18,8 +18,9 @@ export default {
         'glass-border': 'rgba(255, 255, 255, 0.1)',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Outfit', 'sans-serif'], // For headers if we add it
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

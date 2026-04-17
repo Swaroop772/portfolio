@@ -35,9 +35,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                 <X size={20} className="text-slate-800 dark:text-white" />
                             </button>
 
-                            {/* Header Image / Gradient */}
+                            {/* Header gradient banner */}
                             <div className={`h-48 md:h-64 w-full bg-gradient-to-br ${project.gradient || 'from-blue-600 to-purple-600'} relative overflow-hidden flex items-center justify-center`}>
-                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
                                 <motion.div
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
@@ -45,15 +45,17 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                     className="text-center p-6"
                                 >
                                     <div className="inline-block p-4 rounded-2xl bg-white/10 backdrop-blur-md mb-4 border border-white/20 shadow-xl">
-                                        {React.cloneElement(project.icon, { size: 48, className: "text-white" })}
+                                        {React.cloneElement(project.icon, { size: 48, className: 'text-white' })}
                                     </div>
-                                    <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">{project.title}</h2>
+                                    <h2 className="font-display text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                                        {project.title}
+                                    </h2>
                                 </motion.div>
                             </div>
 
                             <div className="p-8 md:p-10 space-y-8">
 
-                                {/* Quick Stats / Links */}
+                                {/* Tags + Links */}
                                 <div className="flex flex-wrap gap-4 justify-between items-center border-b border-slate-200 dark:border-white/10 pb-8">
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.map((tag, idx) => (
@@ -63,64 +65,59 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                         ))}
                                     </div>
                                     <div className="flex gap-3">
-                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-black font-bold rounded-lg hover:opacity-90 transition-opacity">
-                                            <Github size={18} /> GitHub
+                                        <a href={project.github} target="_blank" rel="noopener noreferrer"
+                                            className="flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-black font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
+                                            <Github size={16} /> GitHub
                                         </a>
                                         {project.demo && project.demo !== '#' && (
-                                            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">
-                                                <ExternalLink size={18} /> Live Demo
+                                            <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                                                <ExternalLink size={16} /> Live Demo
                                             </a>
                                         )}
                                     </div>
                                 </div>
 
-                                {/* Main Content Grid */}
+                                {/* Content grid */}
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    {/* Left Column: Description & Challenge */}
+                                    {/* Left: Description + Challenge */}
                                     <div className="md:col-span-2 space-y-8">
                                         <div>
-                                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                                                <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
+                                            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                                <span className="w-1 h-6 bg-blue-500 rounded-full" />
                                                 Project Overview
                                             </h3>
-                                            <p className="text-slate-600 dark:text-gray-300 leading-relaxed text-lg">
+                                            <p className="text-slate-600 dark:text-gray-300 leading-relaxed text-base">
                                                 {project.fullDescription || project.description}
                                             </p>
                                         </div>
 
                                         <div className="bg-slate-50 dark:bg-white/5 rounded-2xl p-6 border border-slate-200 dark:border-white/5">
-                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Key Challenge & Solution</h3>
-                                            <p className="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                                {project.challenge || "One of the detailed technical challenges for this project was optimizing the real-time data processing pipeline. By implementing efficient caching strategies and using a more robust state management solution, latency was reduced by 40%."}
+                                            <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white mb-3">
+                                                Key Challenge &amp; Solution
+                                            </h3>
+                                            <p className="text-slate-600 dark:text-gray-400 leading-relaxed text-sm">
+                                                {project.challenge || 'One of the detailed technical challenges for this project was optimizing the real-time data processing pipeline. By implementing efficient caching strategies and using a more robust state management solution, latency was reduced by 40%.'}
                                             </p>
                                         </div>
                                     </div>
 
-                                    {/* Right Column: Key Features */}
-                                    <div className="space-y-6">
-                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                                    {/* Right: Key Features */}
+                                    <div className="space-y-4">
+                                        <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                                             <Code size={20} className="text-purple-500" />
                                             Key Features
                                         </h3>
                                         <ul className="space-y-3">
-                                            {(project.features || ["Real-time Data Analysis", "Responsive UI Design", "Secure Authentication", "Cloud Integration"]).map((feature, idx) => (
+                                            {(project.features || ['Real-time Data Analysis', 'Responsive UI Design', 'Secure Authentication', 'Cloud Integration']).map((feature, idx) => (
                                                 <li key={idx} className="flex items-start gap-3 text-slate-600 dark:text-gray-400 text-sm">
-                                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></span>
+                                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
                                                     {feature}
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
-
-                                {/* Placeholder for Gallery - Can be expanded later */}
-                                {/* <div className="pt-8 border-t border-slate-200 dark:border-white/10">
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Interface Gallery</h3>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="aspect-video bg-slate-200 dark:bg-white/5 rounded-xl animate-pulse"></div>
-                                        <div className="aspect-video bg-slate-200 dark:bg-white/5 rounded-xl animate-pulse"></div>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
                     </motion.div>

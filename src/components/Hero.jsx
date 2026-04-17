@@ -24,12 +24,12 @@ const Hero = () => {
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-blue/30 bg-neon-blue/5 mb-6"
                     >
                         <Sparkles size={14} className="text-neon-blue" />
-                        <span className="text-neon-blue text-sm font-medium tracking-wide">Logic Architect</span>
+                        <span className="text-neon-blue text-sm font-medium tracking-wide">Aspiring Software Engineer</span>
                     </motion.div>
-                    <h2 className="text-sm md:text-base font-medium tracking-wider text-neon-blue uppercase mb-4 animate-pulse">
-                        Logic Architect
+                    <h2 className="font-mono text-xs md:text-sm font-medium tracking-[0.25em] text-neon-blue uppercase mb-4">
+                        &lt; Aspiring Software Engineer /&gt;
                     </h2>
-                    <h1 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                    <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 leading-[1.05] tracking-tight">
                         Hi, I'm <br />
                         <span className="relative inline-block">
                             <span className="absolute -inset-1 bg-gradient-to-r from-neon-blue to-neon-purple blur opacity-30"></span>

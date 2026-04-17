@@ -65,7 +65,7 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
                         Get In <span className="text-neon-pink">Touch</span>
                     </h2>
                     <p className="text-gray-400">Let's build something extraordinary together.</p>
@@ -80,7 +80,7 @@ const Contact = () => {
                         className="space-y-10"
                     >
                         <div className="space-y-6">
-                            <h3 className="text-3xl font-bold text-slate-900 dark:text-white">Let's Connect</h3>
+                            <h3 className="font-display text-3xl font-bold text-slate-900 dark:text-white">Let's Connect</h3>
                             <p className="text-slate-600 dark:text-gray-300 text-lg leading-relaxed">
                                 I'm currently looking for new opportunities in <span className="text-blue-500 dark:text-neon-blue">AI/ML</span> and <span className="text-purple-500 dark:text-neon-purple">Data Science</span>.
                                 Whether you have a question or just want to say hi, I'll try my best to get back to you!
@@ -126,7 +126,7 @@ const Contact = () => {
                         </div>
 
                         <div className="pt-4">
-                            <h4 className="text-slate-800 dark:text-white font-semibold mb-6">Follow Me</h4>
+                            <h4 className="font-display text-slate-800 dark:text-white font-semibold mb-6">Follow Me</h4>
                             <div className="flex gap-4">
                                 <MagneticButton>
                                     <a href="https://www.linkedin.com/in/swaroop-kurapati/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-gray-400 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-all duration-300 shadow-lg dark:shadow-none">

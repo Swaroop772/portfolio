@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('hero');
+    const [activeSection, setActiveSection] = useState('home');
     const { theme } = useTheme();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Navbar = () => {
             setScrolled(window.scrollY > 50);
 
             // Active section logic
-            const sections = ['hero', 'about', 'skills', 'projects', 'resume', 'contact'];
+            const sections = ['home', 'about', 'skills', 'projects', 'resume', 'contact'];
             const current = sections.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
@@ -32,7 +32,7 @@ const Navbar = () => {
     }, []);
 
     const navItems = [
-        { name: 'Home', href: '#hero', id: 'hero', icon: <Home size={16} /> },
+        { name: 'Home', href: '#home', id: 'home', icon: <Home size={16} /> },
         { name: 'About', href: '#about', id: 'about', icon: <User size={16} /> },
         { name: 'Skills', href: '#skills', id: 'skills', icon: <Server size={16} /> },
         { name: 'Projects', href: '#projects', id: 'projects', icon: <Folder size={16} /> },
@@ -46,9 +46,9 @@ const Navbar = () => {
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className={`fixed top-6 left-0 right-0 z-50 mx-auto w-[95%] md:w-max px-6 py-3 rounded-full transition-all duration-300 flex items-center justify-between md:justify-center gap-4 ${scrolled
-                        ? 'bg-white/70 dark:bg-glass/80 backdrop-blur-md border border-slate-200 dark:border-glass-border shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(0,243,255,0.1)]'
-                        : 'bg-transparent border border-transparent'
+                className={`fixed top-6 left-0 right-0 z-50 mx-auto w-[95%] md:w-max px-6 py-3 rounded-full transition-all duration-500 flex items-center justify-between md:justify-center gap-4 ${scrolled
+                        ? 'bg-white/80 dark:bg-[#030014]/90 backdrop-blur-xl border border-slate-200/60 dark:border-white/[0.08] shadow-lg dark:shadow-[0_0_30px_rgba(0,243,255,0.08)]'
+                        : 'bg-white/50 dark:bg-[#030014]/70 backdrop-blur-md border border-slate-200/40 dark:border-white/[0.06]'
                     }`}
             >
                 {/* Logo for mobile */}
@@ -63,8 +63,8 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center gap-1">
                     {navItems.map((item) => (
                         <a key={item.name} href={item.href} className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 overflow-hidden group ${activeSection === item.id
-                                ? 'text-white dark:text-black'
-                                : 'text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white'
+                                ? 'text-white dark:text-white'
+                                : 'text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white'
                             }`}>
                             {activeSection === item.id && (
                                 <motion.div

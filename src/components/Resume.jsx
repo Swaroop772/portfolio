@@ -23,7 +23,7 @@ const Resume = () => {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+                    <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                         Resume & <span className="text-blue-500 dark:text-neon-blue">Achi</span>evements
                     </h2>
                     <p className="text-slate-600 dark:text-gray-400">A glimpse into my professional journey.</p>
@@ -42,7 +42,7 @@ const Resume = () => {
                                 <Award size={150} className="text-slate-900 dark:text-white" />
                             </div>
 
-                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3 relative z-10">
+                            <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3 relative z-10">
                                 <span className="p-2 bg-purple-100 dark:bg-neon-purple/20 rounded-lg text-purple-600 dark:text-neon-purple">
                                     <FileText size={24} />
                                 </span>
