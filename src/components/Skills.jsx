@@ -128,7 +128,7 @@ export default function Skills() {
                     viewport={{ once: true, margin: "-100px" }}
                     className="columns-1 md:columns-2 lg:columns-3 gap-5 lg:gap-6"
                 >
-                    {categories.map((cat, index) => (
+                    {categories.map((cat) => (
                         <motion.div
                             key={cat.id}
                             variants={itemVariants}

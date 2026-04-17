@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Code, Home, User, Server, Folder, FileText, Mail } from 'lucide-react';
 import ThemeToggle from './ui/ThemeToggle';
-import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const { theme } = useTheme();
 
     useEffect(() => {
         const handleScroll = () => {
