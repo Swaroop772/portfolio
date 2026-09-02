@@ -10,9 +10,9 @@ const projects = [
 ];
 
 const accents = {
-  teal: { text: 'text-teal', bg: 'bg-teal', soft: 'bg-teal/10', border: 'border-teal/25' },
-  coral: { text: 'text-coral', bg: 'bg-coral', soft: 'bg-coral/10', border: 'border-coral/25' },
-  violet: { text: 'text-violet', bg: 'bg-violet', soft: 'bg-violet/10', border: 'border-violet/25' },
+  teal: { text: 'text-teal', soft: 'bg-teal/10', border: 'border-teal/25' },
+  coral: { text: 'text-coral', soft: 'bg-coral/10', border: 'border-coral/25' },
+  violet: { text: 'text-violet', soft: 'bg-violet/10', border: 'border-violet/25' },
 };
 
 const ProjectCard = ({ project, index, onOpen }) => {
@@ -35,7 +35,7 @@ const ProjectCard = ({ project, index, onOpen }) => {
       <motion.div initial={{ x: 20, opacity: 0 }} whileHover={{ x: 0, opacity: 1 }} className={`absolute bottom-6 right-6 rounded-full border ${accent.border} bg-ink/80 px-3 py-1.5 text-[10px] uppercase tracking-widest ${accent.text} backdrop-blur`}>View details</motion.div>
       <motion.a href={project.github} target="_blank" rel="noreferrer" data-cursor="view" aria-label={`Open ${project.title} on GitHub`} onClick={e => e.stopPropagation()} whileHover={{ scale: 1.12, rotate: -8 }} className={`absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-ink/80 ${accent.text} opacity-0 backdrop-blur group-hover:opacity-100`}><Github size={15} /></motion.a>
     </motion.div>
-    <div className="mt-5 flex items-start justify-between gap-4"><div><motion.p whileHover={{ x: 3 }} className={`text-xs font-semibold uppercase tracking-[.14em] ${accent.text}`}>{project.type}</motion.p><h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{project.description}</p></div><motion.span whileHover={{ x: 4, y: -4, rotate: 12, scale: 1.08 }} className={`mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-slate-500 group-hover:${accent.text}`}><ArrowUpRight size={16} /></motion.span></div>
+    <div className="mt-5 flex items-start justify-between gap-4"><div><motion.p whileHover={{ x: 3 }} className={`text-xs font-semibold uppercase tracking-[.14em] ${accent.text}`}>{project.type}</motion.p><h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{project.description}</p></div><motion.span whileHover={{ x: 4, y: -4, rotate: 12, scale: 1.08 }} className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-slate-500 group-hover:text-white"><ArrowUpRight size={16} /></motion.span></div>
     <div className="mt-4 flex flex-wrap gap-2">{project.tags.map(tag => <motion.span key={tag} whileHover={{ y: -2, scale: 1.04 }} className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-slate-500">{tag}</motion.span>)}</div>
   </motion.article>;
 };
