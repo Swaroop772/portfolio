@@ -15,7 +15,7 @@ export default function Experience() {
     <section id="experience" className="relative overflow-hidden bg-surface py-28 sm:py-36">
       <div className="section-shell">
         <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7 }}>
-          <p className="section-kicker">03 — Experience</p>
+          <p className="section-kicker">Experience</p>
           <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end"><h2 className="section-heading max-w-2xl">Internships that<br /><span>shaped my work.</span></h2><p className="max-w-md text-sm leading-6 text-slate-500">A practical mix of backend engineering, AI/ML, cybersecurity and front-end development experience.</p></div>
         </motion.div>
         <div className="relative mt-14 divide-y divide-white/10 border-y border-white/10">
