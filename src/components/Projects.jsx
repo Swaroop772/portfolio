@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowUpRight, Github, Sparkles, Activity, Lock, X } from 'lucide-react';
+import { ArrowUpRight, Github, Sparkles, Activity, Lock } from 'lucide-react';
 import ProjectModal from './ui/ProjectModal';
 
 const projects = [
@@ -15,7 +15,6 @@ const ProjectCard = ({ project, index, onOpen }) => {
   const rotateY = useSpring(useTransform(mx, [-100, 100], [-5, 5]), { stiffness: 250, damping: 25 });
   const move = e => { const r = e.currentTarget.getBoundingClientRect(); mx.set(e.clientX - r.left - r.width / 2); my.set(e.clientY - r.top - r.height / 2); };
   const reset = () => { mx.set(0); my.set(0); };
-
   return <motion.article initial={{ opacity: 0, y: 40, scale: .96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, margin: '-80px' }} transition={{ delay: index * .1, duration: .65, ease: [.22, 1, .36, 1] }} onMouseMove={move} onMouseLeave={reset} onClick={() => onOpen(project)} style={{ rotateX, rotateY, transformPerspective: 900 }} className="group cursor-pointer">
     <motion.div whileHover={{ y: -8 }} transition={{ type: 'spring', stiffness: 300, damping: 22 }} className="relative aspect-[1.25/1] overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-2xl shadow-black/10">
       <motion.div className={`absolute inset-0 ${project.accent === 'coral' ? 'bg-coral/10' : 'bg-teal/10'}`} whileHover={{ scale: 1.12 }} transition={{ duration: .7 }} />
@@ -26,7 +25,6 @@ const ProjectCard = ({ project, index, onOpen }) => {
       </motion.div>
       <motion.div className="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/20 text-teal" whileHover={{ rotate: 15, scale: 1.15 }}>{project.icon}</motion.div>
       <motion.div initial={{ x: 20, opacity: 0 }} whileHover={{ x: 0, opacity: 1 }} className="absolute bottom-6 right-6 rounded-full border border-teal/30 bg-ink/80 px-3 py-1.5 text-[10px] uppercase tracking-widest text-teal backdrop-blur">Open project</motion.div>
-      <div className="absolute bottom-6 left-6 font-mono text-[10px] tracking-[.2em] text-slate-500">PROJECT_{String(index + 1).padStart(2, '0')}</div>
       <motion.a href={project.github} target="_blank" rel="noreferrer" data-cursor="view" onClick={e => e.stopPropagation()} whileHover={{ scale: 1.12, rotate: -8 }} className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-ink/80 text-slate-400 opacity-0 backdrop-blur group-hover:opacity-100 hover:text-teal"><Github size={15} /></motion.a>
     </motion.div>
     <div className="mt-5 flex items-start justify-between gap-4"><div><motion.p whileHover={{ x: 3 }} className="text-xs font-semibold uppercase tracking-[.14em] text-teal">{project.type}</motion.p><h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{project.description}</p></div><motion.span whileHover={{ x: 4, y: -4, rotate: 12, scale: 1.08 }} className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-slate-500 group-hover:border-coral group-hover:text-coral"><ArrowUpRight size={16} /></motion.span></div>
@@ -39,9 +37,7 @@ const Projects = () => {
   return <section id="projects" className="relative overflow-hidden bg-surface py-28 sm:py-36">
     <div className="absolute inset-0 pattern-dots opacity-40" />
     <div className="section-shell relative z-10">
-      <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-        <p className="section-kicker">04 — Selected work</p><div className="mt-4 flex flex-col justify-between gap-7 md:flex-row md:items-end"><h2 className="section-heading">My recent <span>works</span></h2><p className="max-w-md text-sm leading-6 text-slate-500">A few projects where I explored product development, AI and security.</p></div>
-      </motion.div>
+      <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}><p className="section-kicker">Selected work</p><div className="mt-4 flex flex-col justify-between gap-7 md:flex-row md:items-end"><h2 className="section-heading">My recent <span>works</span></h2><p className="max-w-md text-sm leading-6 text-slate-500">A few projects where I explored product development, AI and security.</p></div></motion.div>
       <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3" style={{ perspective: 1200 }}>{projects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} onOpen={setSelectedProject} />)}</div>
     </div>
     <AnimatePresence>{selectedProject && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md" />}</AnimatePresence>
