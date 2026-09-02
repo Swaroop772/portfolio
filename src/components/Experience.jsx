@@ -25,11 +25,14 @@ export default function Experience() {
               <motion.span initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: .2 + index * .1, type: 'spring' }} className="absolute left-[9px] top-10 hidden h-2.5 w-2.5 rounded-full border-2 border-teal bg-surface lg:block" />
               <div className="flex items-center gap-3"><motion.span whileHover={{ rotate: -8, scale: 1.08 }} className="flex h-9 w-9 items-center justify-center border border-teal/30 text-teal"><Briefcase size={16} /></motion.span><div><h3 className="text-lg font-bold text-white transition-colors group-hover:text-teal">{item.role}</h3><p className="mt-1 text-sm font-semibold text-teal">{item.company}</p></div></div>
               <ul className="space-y-2 text-sm leading-6 text-slate-400">{item.points.map((point, pointIndex) => <motion.li key={point} initial={{ opacity: 0, x: 12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: .15 + index * .1 + pointIndex * .06 }} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 bg-coral" />{point}</motion.li>)}</ul>
-              <div className="text-left lg:text-right"><p className="font-mono text-xs uppercase tracking-wider text-slate-300">{item.period}</p><div className="mt-2 flex items-center gap-2 text-xs text-slate-600 lg:justify-end">{item.current && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal" />}{item.mode}</div></div>
+              <div className="text-left lg:text-right"><p className="font-mono text-xs uppercase tracking-wider text-slate-300">{item.period}</p><div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-600 lg:justify-end">{item.current && <><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal" /><span className="font-semibold uppercase tracking-wider text-teal">Currently working</span><span className="text-slate-700">·</span></>}{item.mode}</div></div>
             </motion.article>
           ))}
         </div>
-        <motion.a whileHover={{ x: 6 }} href="#contact" className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[.16em] text-teal hover:text-white">Let's work together <ArrowUpRight size={16} /></motion.a>
+        <div className="mt-12 flex flex-col gap-5 border border-white/10 bg-ink p-7 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div><p className="text-xs font-semibold uppercase tracking-[.2em] text-coral">Next chapter</p><h3 className="mt-2 text-xl font-bold text-white">Open to building useful products.</h3><p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">If you're working on backend systems, AI products or developer-focused experiences, let's talk.</p></div>
+          <motion.a whileHover={{ x: 4 }} href="#contact" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold uppercase tracking-[.16em] text-teal hover:text-white">Let's work together <ArrowUpRight size={16} /></motion.a>
+        </div>
       </div>
     </section>
   );
