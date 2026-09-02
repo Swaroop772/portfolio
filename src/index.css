@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { font-family: 'Inter', system-ui, sans-serif; color: #151515; background: #f4f1eb; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #151515;
+  background: #f4f1eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
 html { scroll-behavior: smooth; background: #f4f1eb; }
 body { margin: 0; min-width: 320px; min-height: 100vh; overflow-x: hidden; background: #f4f1eb; color: #151515; transition: background-color .35s ease, color .35s ease; }
 #root { width: 100%; }
@@ -20,8 +28,12 @@ code,pre,.font-mono { font-family: 'JetBrains Mono',monospace; }
 .section-heading { color: #151515; font-size: clamp(3.1rem, 7vw, 6.8rem); font-weight: 900; letter-spacing: -.065em; }
 .section-heading span { color: #ff5b4d; }
 
+.bg-paper { background: #f4f1eb; }
 .bg-ink { background: #151515; }
 .bg-surface { background: #ebe7df; }
+.bg-night { background: #111; }
+.text-ink { color: #151515; }
+.text-paper { color: #f4f1eb; }
 .text-teal { color: #006f68; }
 .text-coral { color: #ff5b4d; }
 .bg-teal { background: #006f68; }
@@ -60,8 +72,12 @@ html.dark ::-webkit-scrollbar-thumb { background:#4a4a4a; }
 html.dark .section-kicker { color:#f5f2ec; }
 html.dark .section-heading { color:#f5f2ec; }
 html.dark .section-heading span { color:#ff7667; }
+html.dark .bg-paper { background:#111; }
 html.dark .bg-ink { background:#111; }
 html.dark .bg-surface { background:#181818; }
+html.dark .bg-night { background:#111; }
+html.dark .text-ink { color:#f5f2ec; }
+html.dark .text-paper { color:#f5f2ec; }
 html.dark .text-teal { color:#38cfc2; }
 html.dark .text-coral { color:#ff7667; }
 html.dark .bg-teal { background:#38cfc2; }
