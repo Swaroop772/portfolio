@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, ArrowRight, Github, Mail } from 'lucide-react';
+import { ArrowDown, ArrowRight, Download, Github, Mail } from 'lucide-react';
 
 const Hero = () => (
   <section id="home" className="relative min-h-[92vh] overflow-hidden border-b border-white/5">
@@ -15,7 +15,8 @@ const Hero = () => (
           <motion.div initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ delay: .55, duration: .55 }} className="mt-8 flex origin-left items-center gap-4"><span className="h-px w-12 bg-coral" /><p className="text-sm font-medium uppercase tracking-[.2em] text-slate-300">Backend Engineer · AI/ML</p></motion.div>
           <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }} className="mt-7 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">I build reliable backend systems, practical AI applications and polished web experiences with a focus on clean engineering and useful products.</motion.p>
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .75 }} className="mt-9 flex flex-wrap gap-3"><motion.a whileHover={{ y: -3, scale: 1.02 }} whileTap={{ scale: .97 }} href="#projects" className="btn-primary">View my work <ArrowRight size={17} /></motion.a><motion.a whileHover={{ y: -3, scale: 1.02 }} whileTap={{ scale: .97 }} href="#contact" className="btn-outline"><Mail size={17} /> Contact me</motion.a></motion.div>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .95 }} className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-[.16em] text-slate-600"><span>Python</span><span>·</span><span>NestJS</span><span>·</span><span>React</span><span>·</span><span>AI / ML</span><a href="https://github.com/Swaroop772" target="_blank" rel="noreferrer" className="ml-1 inline-flex items-center gap-1 text-slate-400 transition-colors hover:text-teal"><Github size={13} /> GitHub</a></motion.div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .9 }} className="mt-5 flex items-center gap-4"><a href="/resume.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[.16em] text-slate-500 transition-colors hover:text-teal"><Download size={13} /> View resume</a><span className="h-1 w-1 rounded-full bg-slate-700" /><a href="https://github.com/Swaroop772" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[.16em] text-slate-500 transition-colors hover:text-teal"><Github size={13} /> GitHub</a></motion.div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.02 }} className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-[.16em] text-slate-600"><span>Python</span><span>·</span><span>NestJS</span><span>·</span><span>React</span><span>·</span><span>AI / ML</span></motion.div>
         </motion.div>
         <motion.div initial={{ opacity: 0, x: 35, scale: .94 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: .9, delay: .2, ease: [.22, 1, .36, 1] }} className="relative mx-auto w-full max-w-md">
           <motion.div animate={{ y: [0, -12, 0], rotate: [0, 1, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className="relative">
