@@ -28,8 +28,7 @@ const About = () => (
       <div className="mt-28 grid border-y border-black/15 dark:border-white/15 md:grid-cols-3">
         {capabilities.map(([title, text], index) => (
           <motion.div key={title} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .1 }} className="border-b border-black/15 p-7 dark:border-white/15 md:border-b-0 md:border-r last:border-r-0 sm:p-9">
-            <span className="font-mono text-[10px] text-black/35 dark:text-white/35">0{index + 1}</span>
-            <h3 className="mt-12 text-2xl font-black tracking-[-.04em]">{title}</h3>
+            <h3 className="text-2xl font-black tracking-[-.04em]">{title}</h3>
             <p className="mt-3 text-sm leading-6 text-black/45 dark:text-white/45">{text}</p>
           </motion.div>
         ))}
