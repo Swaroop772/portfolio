@@ -3,79 +3,47 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 
 const CustomCursor = () => {
-    const [isHovered, setIsHovered] = useState(false);
-    const cursorX = useMotionValue(-100);
-    const cursorY = useMotionValue(-100);
-    const { theme } = useTheme();
+  const [mode, setMode] = useState('default');
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const { theme } = useTheme();
+  const springConfig = { damping: 24, stiffness: 420, mass: 0.35 };
+  const x = useSpring(cursorX, springConfig);
+  const y = useSpring(cursorY, springConfig);
+  const isDark = theme === 'dark';
 
-    const springConfig = { damping: 20, stiffness: 300 }; // Softer spring for floaty feel
-    const cursorXSpring = useSpring(cursorX, springConfig);
-    const cursorYSpring = useSpring(cursorY, springConfig);
+  useEffect(() => {
+    const move = (e) => { cursorX.set(e.clientX); cursorY.set(e.clientY); };
+    const enter = (e) => setMode(e.currentTarget.dataset.cursor || 'hover');
+    const leave = () => setMode('default');
+    const bind = () => document.querySelectorAll('a, button, input, textarea, [data-cursor]').forEach(el => {
+      el.addEventListener('mouseenter', enter);
+      el.addEventListener('mouseleave', leave);
+    });
+    bind();
+    const observer = new MutationObserver(bind);
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('mousemove', move, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', move);
+      observer.disconnect();
+      document.querySelectorAll('a, button, input, textarea, [data-cursor]').forEach(el => {
+        el.removeEventListener('mouseenter', enter); el.removeEventListener('mouseleave', leave);
+      });
+    };
+  }, [cursorX, cursorY]);
 
-    useEffect(() => {
-        const moveCursor = (e) => {
-            cursorX.set(e.clientX);
-            cursorY.set(e.clientY);
-        };
+  const expanded = mode === 'hover' || mode === 'view';
+  const view = mode === 'view';
 
-        const handleMouseEnter = () => setIsHovered(true);
-        const handleMouseLeave = () => setIsHovered(false);
-
-        window.addEventListener('mousemove', moveCursor);
-
-        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .cursor-hover');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', handleMouseEnter);
-            el.addEventListener('mouseleave', handleMouseLeave);
-        });
-
-        // MutationObserver to handle dynamically added elements
-        const observer = new MutationObserver(() => {
-            const interactiveElements = document.querySelectorAll('a, button, input, textarea, .cursor-hover');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', handleMouseEnter);
-                el.addEventListener('mouseleave', handleMouseLeave);
-            });
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        return () => {
-            window.removeEventListener('mousemove', moveCursor);
-            interactiveElements.forEach(el => {
-                el.removeEventListener('mouseenter', handleMouseEnter);
-                el.removeEventListener('mouseleave', handleMouseLeave);
-            });
-            observer.disconnect();
-        };
-    }, []);
-
-    const isDark = theme === 'dark';
-
-    return (
-        <motion.div
-            className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block" // Hidden on mobile
-            style={{
-                x: cursorXSpring,
-                y: cursorYSpring,
-                translateX: '-50%',
-                translateY: '-50%',
-            }}
-        >
-            {/* The Spotlight / Glow */}
-            <motion.div
-                animate={{
-                    width: isHovered ? 200 : 80,
-                    height: isHovered ? 200 : 80,
-                    opacity: isHovered ? 0.6 : 0.4,
-                }}
-                className={`rounded-full blur-2xl transition-colors duration-300 ${isDark ? 'mix-blend-screen bg-neon-blue' : 'mix-blend-multiply bg-blue-400'}`}
-            />
-
-            {/* Core center dot for precision */}
-            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${isDark ? 'bg-white' : 'bg-slate-900'} transition-colors duration-300`} />
-        </motion.div>
-    );
+  return (
+    <motion.div className="pointer-events-none fixed left-0 top-0 z-[9999] hidden md:block" style={{ x, y, translateX: '-50%', translateY: '-50%' }}>
+      <motion.div animate={{ width: expanded ? (view ? 82 : 58) : 16, height: expanded ? (view ? 82 : 58) : 16, opacity: expanded ? .9 : 1 }} transition={{ type: 'spring', stiffness: 300, damping: 24 }} className={`relative flex items-center justify-center rounded-full border ${isDark ? 'border-teal/60 bg-teal/10' : 'border-slate-900/40 bg-slate-900/5'} backdrop-blur-sm`}>
+        <motion.div animate={{ scale: expanded ? .65 : 1 }} className={`h-2 w-2 rounded-full ${isDark ? 'bg-teal' : 'bg-slate-900'}`} />
+        {view && <motion.span initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} className="absolute text-[9px] font-bold uppercase tracking-widest text-teal">view</motion.span>}
+      </motion.div>
+      <motion.div animate={{ scale: [1, 1.18, 1], opacity: [.18, .28, .18] }} transition={{ duration: 2, repeat: Infinity }} className="absolute -inset-4 rounded-full bg-teal/20 blur-xl" />
+    </motion.div>
+  );
 };
-
 export default CustomCursor;
