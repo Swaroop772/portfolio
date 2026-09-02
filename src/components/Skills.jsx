@@ -23,7 +23,7 @@ export default function Skills() {
         <div className="mt-14 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
           {groups.map(({ title, icon: Icon, description, items }, index) => (
             <motion.article key={title} initial={{ opacity: 0, y: 35 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: index * .1, duration: .55 }} whileHover={{ y: -4 }} className="group bg-ink p-7 transition-colors hover:bg-surface sm:p-8">
-              <div className="flex items-start justify-between gap-4"><div className="flex items-center gap-3"><motion.div whileHover={{ rotate: 10, scale: 1.12 }}><Icon size={18} className="text-teal" /></motion.div><h3 className="text-lg font-bold text-white">{title}</h3></div><span className="font-mono text-[10px] text-slate-700">0{index + 1}</span></div>
+              <div className="flex items-center gap-3"><motion.div whileHover={{ rotate: 10, scale: 1.12 }}><Icon size={18} className="text-teal" /></motion.div><h3 className="text-lg font-bold text-white">{title}</h3></div>
               <p className="mt-3 max-w-sm text-xs leading-5 text-slate-600">{description}</p>
               <div className="mt-6 flex flex-wrap gap-2">{items.map((item, itemIndex) => <motion.span key={item} initial={{ opacity: 0, scale: .8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * .08 + itemIndex * .035, duration: .3 }} whileHover={{ y: -3, scale: 1.04 }} className="cursor-default border border-white/10 px-3 py-1.5 text-xs text-slate-400 transition-colors hover:border-teal/50 hover:text-teal">{item}</motion.span>)}</div>
             </motion.article>
