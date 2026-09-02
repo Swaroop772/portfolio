@@ -25,7 +25,7 @@ const Hero = () => (
               <motion.div animate={{ rotate: -360 }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }} className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-coral/20" />
               <motion.div animate={{ scaleX: [1, 1.08, 1] }} transition={{ duration: 2.5, repeat: Infinity }} className="absolute bottom-14 left-1/2 h-2 w-48 -translate-x-1/2 rounded-full bg-teal" />
               <div className="absolute bottom-16 left-1/2 h-20 w-2 -translate-x-1/2 rotate-[28deg] origin-bottom bg-white/90" /><div className="absolute bottom-28 left-1/2 h-24 w-16 -translate-x-1/2 rounded-t-[2rem] rounded-b-xl bg-coral" /><motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-48 left-[48%] h-12 w-12 -translate-x-1/2 rounded-full bg-teal" /><div className="absolute bottom-24 left-[41%] h-3 w-20 rotate-[-22deg] rounded-full bg-white/90" />
-              <motion.span animate={{ y: [0, -4, 0] }} transition={{ duration: 2.2, repeat: Infinity }} className="absolute right-12 top-12 font-mono text-xs text-teal">&lt;code /&gt;</motion.span><span className="absolute bottom-12 left-10 font-mono text-xs text-coral">01 / 05</span>
+              <motion.span animate={{ y: [0, -4, 0] }} transition={{ duration: 2.2, repeat: Infinity }} className="absolute right-12 top-12 font-mono text-xs text-teal">&lt;code /&gt;</motion.span>
             </div>
           </motion.div>
         </motion.div>
