@@ -16,7 +16,7 @@ function App() {
   return (
     <ThemeProvider>
       <MotionConfig reducedMotion="user">
-        <div className="min-h-screen overflow-x-hidden bg-ink text-white">
+        <div className="min-h-screen overflow-x-hidden bg-paper text-ink dark:bg-night dark:text-paper">
           <ScrollProgress />
           <CustomCursor />
           <Navbar />
