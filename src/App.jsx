@@ -1,4 +1,5 @@
 import React from 'react';
+import { MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import CustomCursor from './components/ui/CustomCursor';
@@ -14,20 +15,22 @@ import { ThemeProvider } from './context/ThemeContext';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen overflow-x-hidden bg-ink text-white">
-        <ScrollProgress />
-        <CustomCursor />
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <MotionConfig reducedMotion="user">
+        <div className="min-h-screen overflow-x-hidden bg-ink text-white">
+          <ScrollProgress />
+          <CustomCursor />
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Experience />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </MotionConfig>
     </ThemeProvider>
   );
 }
