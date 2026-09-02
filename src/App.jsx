@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import CustomCursor from './components/ui/CustomCursor';
+import ScrollProgress from './components/ui/ScrollProgress';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -14,6 +15,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen overflow-x-hidden bg-ink text-white">
+        <ScrollProgress />
         <CustomCursor />
         <Navbar />
         <main>
