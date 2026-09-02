@@ -9,44 +9,38 @@ const projects = [
   { title: 'StegaSafe', type: 'Cybersecurity', description: 'Secure image steganography combining LSB techniques with encryption.', fullDescription: 'A security-focused tool for hiding sensitive information inside images while preserving visual quality.', challenge: 'LSB embedding and encryption work together to protect the hidden payload without visibly distorting the carrier image.', features: ['LSB steganography', 'AES encryption', 'Image integrity checks'], tags: ['OpenCV', 'Security', 'Python'], github: 'https://github.com/Swaroop772/stegnography', demo: '#', accent: 'teal', icon: <Lock /> },
 ];
 
-const accents = {
-  teal: { text: 'text-teal', soft: 'bg-teal/10', border: 'border-teal/25' },
-  coral: { text: 'text-coral', soft: 'bg-coral/10', border: 'border-coral/25' },
-  violet: { text: 'text-violet', soft: 'bg-violet/10', border: 'border-violet/25' },
-};
+const palette = { teal: { bg: '#006f68', light: '#d9eeea' }, coral: { bg: '#ff5b4d', light: '#ffe0db' }, violet: { bg: '#7357d9', light: '#e8e2ff' } };
 
 const ProjectCard = ({ project, index, onOpen }) => {
   const mx = useMotionValue(0), my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-100, 100], [5, -5]), { stiffness: 250, damping: 25 });
-  const rotateY = useSpring(useTransform(mx, [-100, 100], [-5, 5]), { stiffness: 250, damping: 25 });
+  const rotateX = useSpring(useTransform(my, [-120, 120], [3, -3]), { stiffness: 250, damping: 25 });
+  const rotateY = useSpring(useTransform(mx, [-120, 120], [-3, 3]), { stiffness: 250, damping: 25 });
   const move = e => { const r = e.currentTarget.getBoundingClientRect(); mx.set(e.clientX - r.left - r.width / 2); my.set(e.clientY - r.top - r.height / 2); };
   const reset = () => { mx.set(0); my.set(0); };
-  const accent = accents[project.accent];
-
-  return <motion.article initial={{ opacity: 0, y: 40, scale: .96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, margin: '-80px' }} transition={{ delay: index * .1, duration: .65, ease: [.22, 1, .36, 1] }} onMouseMove={move} onMouseLeave={reset} onClick={() => onOpen(project)} style={{ rotateX, rotateY, transformPerspective: 900 }} className="group cursor-pointer">
-    <motion.div whileHover={{ y: -8 }} transition={{ type: 'spring', stiffness: 300, damping: 22 }} className="relative aspect-[1.25/1] overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-2xl shadow-black/20">
-      <motion.div className={`absolute inset-0 ${accent.soft}`} whileHover={{ scale: 1.08 }} transition={{ duration: .7 }} />
-      <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, currentColor 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
-      <motion.div initial={{ rotate: -3, scale: .98 }} whileHover={{ rotate: 0, scale: 1.04, y: -5 }} transition={{ type: 'spring', stiffness: 220, damping: 20 }} className="absolute left-[10%] top-[15%] h-[52%] w-[80%] rounded-lg border border-white/10 bg-slate-950/90 p-3 shadow-2xl">
-        <div className="flex items-center justify-between border-b border-white/10 pb-2"><div className="flex gap-1"><i className="h-1.5 w-1.5 rounded-full bg-coral" /><i className="h-1.5 w-1.5 rounded-full bg-teal" /><i className="h-1.5 w-1.5 rounded-full bg-white/30" /></div><span className="font-mono text-[8px] text-slate-600">{project.title.toLowerCase()}</span></div>
-        <div className="mt-4 grid grid-cols-5 gap-2"><motion.span className={`col-span-3 h-5 rounded ${accent.soft}`} animate={{ opacity: [.5, .9, .5] }} transition={{ duration: 2, repeat: Infinity }} /><span className="col-span-2 h-5 rounded bg-white/10" /><span className="col-span-2 h-16 rounded bg-white/10" /><span className="col-span-3 h-16 rounded bg-white/5" /></div>
+  const color = palette[project.accent];
+  return <motion.article initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ delay: index * .1, duration: .65 }} onMouseMove={move} onMouseLeave={reset} onClick={() => onOpen(project)} style={{ rotateX, rotateY, transformPerspective: 1000 }} className="group cursor-pointer">
+    <motion.div whileHover={{ y: -8 }} className="relative aspect-[1.15/1] overflow-hidden bg-[#151515]" style={{ backgroundColor: color.bg }}>
+      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
+      <motion.div whileHover={{ scale: 1.06, rotate: -2 }} className="absolute left-[9%] top-[12%] h-[66%] w-[82%] overflow-hidden bg-[#f4f1eb] p-4 shadow-2xl">
+        <div className="flex items-center justify-between border-b border-black/10 pb-3"><div className="flex gap-1.5"><i /><i /><i /></div><span className="font-mono text-[8px] uppercase text-black/40">{project.title}</span></div>
+        <div className="mt-5 grid grid-cols-5 gap-2"><span className="col-span-3 h-6" style={{ backgroundColor: color.bg }} /><span className="col-span-2 h-6 bg-black/10" /><span className="col-span-2 h-20 bg-black/10" /><span className="col-span-3 h-20" style={{ backgroundColor: color.light }} /></div>
+        <div className="mt-4 h-2 w-1/2 bg-black/10" />
       </motion.div>
-      <motion.div className={`absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/20 ${accent.text}`} whileHover={{ rotate: 15, scale: 1.15 }}>{project.icon}</motion.div>
-      <motion.div initial={{ x: 20, opacity: 0 }} whileHover={{ x: 0, opacity: 1 }} className={`absolute bottom-6 right-6 rounded-full border ${accent.border} bg-ink/80 px-3 py-1.5 text-[10px] uppercase tracking-widest ${accent.text} backdrop-blur`}>View details</motion.div>
-      <motion.a href={project.github} target="_blank" rel="noreferrer" data-cursor="view" aria-label={`Open ${project.title} on GitHub`} onClick={e => e.stopPropagation()} whileHover={{ scale: 1.12, rotate: -8 }} className={`absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-ink/80 ${accent.text} opacity-0 backdrop-blur group-hover:opacity-100`}><Github size={15} /></motion.a>
+      <div className="absolute bottom-6 left-6 text-white"><p className="font-mono text-[10px] uppercase tracking-[.18em]">0{index + 1}</p><p className="mt-2 text-2xl font-black uppercase tracking-[-.04em]">{project.title}</p></div>
+      <motion.div initial={{ opacity: 0, x: 12 }} whileHover={{ opacity: 1, x: 0 }} className="absolute bottom-6 right-6 rounded-full bg-[#151515] px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white">View project</motion.div>
+      <motion.a href={project.github} target="_blank" rel="noreferrer" data-cursor="view" aria-label={`Open ${project.title} on GitHub`} onClick={e => e.stopPropagation()} whileHover={{ scale: 1.12, rotate: -8 }} className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#151515] text-white opacity-0 group-hover:opacity-100"><Github size={15} /></motion.a>
     </motion.div>
-    <div className="mt-5 flex items-start justify-between gap-4"><div><motion.p whileHover={{ x: 3 }} className={`text-xs font-semibold uppercase tracking-[.14em] ${accent.text}`}>{project.type}</motion.p><h3 className="mt-2 text-xl font-bold text-white">{project.title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{project.description}</p></div><motion.span whileHover={{ x: 4, y: -4, rotate: 12, scale: 1.08 }} className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-slate-500 group-hover:text-white"><ArrowUpRight size={16} /></motion.span></div>
-    <div className="mt-4 flex flex-wrap gap-2">{project.tags.map(tag => <motion.span key={tag} whileHover={{ y: -2, scale: 1.04 }} className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-slate-500">{tag}</motion.span>)}</div>
+    <div className="mt-5 flex items-start justify-between gap-5"><div><p className="text-[10px] font-bold uppercase tracking-[.18em]" style={{ color: color.bg }}>{project.type}</p><h3 className="mt-2 text-2xl font-black tracking-[-.04em]">{project.title}</h3><p className="mt-2 max-w-sm text-sm leading-6 text-black/50">{project.description}</p></div><motion.span whileHover={{ x: 4, y: -4, rotate: 12 }} className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15"><ArrowUpRight size={17} /></motion.span></div>
+    <div className="mt-4 flex flex-wrap gap-2">{project.tags.map(tag => <span key={tag} className="rounded-full border border-black/15 px-3 py-1 text-[10px] font-semibold text-black/55">{tag}</span>)}</div>
   </motion.article>;
 };
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  return <section id="projects" className="relative overflow-hidden bg-surface py-28 sm:py-36">
-    <div className="absolute inset-0 pattern-dots opacity-30" />
+  return <section id="projects" className="relative overflow-hidden bg-[#ebe7df] py-28 sm:py-36">
     <div className="section-shell relative z-10">
-      <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}><p className="section-kicker">Selected work</p><div className="mt-4 flex flex-col justify-between gap-7 md:flex-row md:items-end"><h2 className="section-heading">My recent <span>works</span></h2><p className="max-w-md text-sm leading-6 text-slate-500">A few projects where I explored product development, AI and security.</p></div></motion.div>
-      <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3" style={{ perspective: 1200 }}>{projects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} onOpen={setSelectedProject} />)}</div>
+      <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}><p className="section-kicker">Selected work</p><div className="mt-5 flex flex-col justify-between gap-8 md:flex-row md:items-end"><h2 className="section-heading">Things I've<br /><span>built.</span></h2><p className="max-w-md text-sm leading-6 text-black/50">A small selection of projects across GenAI, machine learning and cybersecurity.</p></div></motion.div>
+      <div className="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3" style={{ perspective: 1200 }}>{projects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} onOpen={setSelectedProject} />)}</div>
     </div>
     <ProjectModal project={selectedProject} isOpen={!!selectedProject} onClose={() => setSelectedProject(null)} />
   </section>;
