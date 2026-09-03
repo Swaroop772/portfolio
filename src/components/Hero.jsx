@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight, Github, FileText } from 'lucide-react';
+import profilePhoto from '../assets/profilePhoto';
 
 const baseUrl = import.meta.env.BASE_URL;
-const profilePhoto = `${baseUrl}experience/portrait.jpg`;
 
 const Hero = () => (
   <section id="home" className="relative min-h-screen overflow-hidden border-b border-black/10 dark:border-white/10">
@@ -13,7 +13,7 @@ const Hero = () => (
         <motion.div initial={{ opacity: 0, x: -30, scale: .97 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: .8, ease: [.22,1,.36,1] }} className="relative mx-auto w-full max-w-[340px] lg:mx-0">
           <div className="absolute -inset-3 rounded-[2rem] bg-teal/10 blur-2xl dark:bg-teal/10" aria-hidden="true" />
           <div className="relative overflow-hidden rounded-[1.6rem] border border-black/10 bg-surface shadow-[0_28px_90px_rgba(21,21,21,.12)] dark:border-white/10 dark:bg-[#181818] dark:shadow-[0_28px_90px_rgba(0,0,0,.25)]">
-            <img src={profilePhoto} alt="Portrait of Swaroop Kurapati" className="aspect-[3/4] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.025]" onError={(e) => { e.currentTarget.src = 'https://github.com/Swaroop772.png'; }} />
+            <img src={profilePhoto} alt="Portrait of Swaroop Kurapati" className="aspect-[3/4] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.025]" />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent p-6 text-white">
               <p className="text-[10px] font-bold uppercase tracking-[.2em] text-white/60">Software engineer · AI / ML</p>
               <div className="mt-2 flex items-end justify-between gap-4">
