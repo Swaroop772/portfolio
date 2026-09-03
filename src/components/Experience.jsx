@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, BriefcaseBusiness, MapPin, Sparkles } from 'lucide-react';
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const internships = [
   {
     role: 'Backend Engineering Intern',
@@ -10,6 +12,7 @@ const internships = [
     mode: 'Onsite',
     current: true,
     accent: '#4fd1c5',
+    image: `${baseUrl}experience/backend.svg`,
     focus: ['NestJS', 'REST APIs', 'Backend Architecture'],
     points: [
       'Building scalable backend systems with NestJS and RESTful APIs.',
@@ -23,6 +26,7 @@ const internships = [
     period: 'Jul 2025 – Aug 2025',
     mode: 'Remote',
     accent: '#a78bfa',
+    image: `${baseUrl}experience/frontend.svg`,
     focus: ['Python', 'Machine Learning', 'Streamlit'],
     points: [
       'Built AI-powered web applications using Python and Streamlit.',
@@ -36,6 +40,7 @@ const internships = [
     period: 'Feb 2025 – Mar 2025',
     mode: 'Remote',
     accent: '#f3c969',
+    image: `${baseUrl}experience/ai.svg`,
     focus: ['Python', 'Machine Learning', 'Streamlit'],
     points: [
       'Built a personal fitness tracker using machine-learning algorithms and real-world datasets.',
@@ -49,6 +54,7 @@ const internships = [
     period: 'Jan 2025 – Feb 2025',
     mode: 'Remote',
     accent: '#ff7b6e',
+    image: `${baseUrl}experience/security.svg`,
     focus: ['Kali Linux', 'Python', 'Cisco Packet Tracer'],
     points: [
       'Performed penetration testing and vulnerability assessment using Kali Linux and Python.',
@@ -113,19 +119,13 @@ const Experience = () => (
               />
 
               <div
-                className={`relative overflow-hidden border p-6 transition-all duration-300 sm:p-7 lg:p-8 ${
+                className={`relative overflow-hidden border p-5 transition-all duration-300 sm:p-7 lg:p-8 ${
                   item.current
                     ? 'border-[#4fd1c5]/25 bg-[#4fd1c5]/[.045] shadow-[0_18px_60px_rgba(0,0,0,.18)]'
                     : 'border-white/8 bg-white/[.018] hover:border-white/15 hover:bg-white/[.028]'
                 }`}
               >
-                <div
-                  className="pointer-events-none absolute left-0 top-0 h-full w-1 opacity-80"
-                  style={{ backgroundColor: item.accent }}
-                  aria-hidden="true"
-                />
-
-                <div className="grid gap-8 lg:grid-cols-[170px_1fr_.9fr] lg:gap-12">
+                <div className="grid gap-7 lg:grid-cols-[155px_126px_1fr_.88fr] lg:gap-9">
                   <div className="flex justify-between gap-5 lg:block">
                     <div>
                       <p className="font-mono text-xs uppercase tracking-[.14em] text-white/35">{item.period}</p>
@@ -142,26 +142,29 @@ const Experience = () => (
                     )}
                   </div>
 
-                  <div>
-                    <div className="flex flex-wrap items-start justify-between gap-4">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-3">
-                          <h3 className="text-2xl font-black tracking-[-.045em] transition-colors group-hover:text-white sm:text-3xl">
-                            {item.role}
-                          </h3>
-                          {item.current && (
-                            <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-[#4fd1c5]/25 bg-[#4fd1c5]/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-[#4fd1c5]">
-                              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#4fd1c5]" />
-                              Current
-                            </span>
-                          )}
-                        </div>
-                        <p className="mt-2 text-sm font-semibold" style={{ color: item.accent }}>
-                          {item.company}
-                        </p>
-                      </div>
-                    </div>
+                  <div className="relative self-start overflow-hidden border border-white/10 bg-black/20">
+                    <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ backgroundColor: item.accent, mixBlendMode: 'screen' }} />
+                    <img
+                      src={item.image}
+                      alt=""
+                      loading="lazy"
+                      className="aspect-square w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
 
+                  <div>
+                    <div className="flex flex-wrap items-start gap-3">
+                      <h3 className="text-2xl font-black tracking-[-.045em] transition-colors group-hover:text-white sm:text-3xl">
+                        {item.role}
+                      </h3>
+                      {item.current && (
+                        <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-[#4fd1c5]/25 bg-[#4fd1c5]/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-[#4fd1c5]">
+                          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#4fd1c5]" />
+                          Current
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-2 text-sm font-semibold" style={{ color: item.accent }}>{item.company}</p>
                     <div className="mt-5 flex flex-wrap gap-2">
                       {item.focus.map((tag) => (
                         <motion.span
@@ -203,20 +206,13 @@ const Experience = () => (
               <Sparkles size={15} />
               <span className="text-[10px] font-bold uppercase tracking-[.2em]">Next chapter</span>
             </div>
-            <h3 className="mt-3 text-2xl font-black tracking-[-.04em] sm:text-3xl">
-              Looking for the next hard problem.
-            </h3>
+            <h3 className="mt-3 text-2xl font-black tracking-[-.04em] sm:text-3xl">Looking for the next hard problem.</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-white/45">
               Backend systems, AI products and developer-focused applications are where I want to keep growing.
             </p>
           </div>
 
-          <motion.a
-            whileHover={{ x: 5 }}
-            whileTap={{ scale: 0.98 }}
-            href="#contact"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.17em] text-[#38cfc2]"
-          >
+          <motion.a whileHover={{ x: 5 }} whileTap={{ scale: 0.98 }} href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.17em] text-[#38cfc2]">
             Let&apos;s talk <ArrowUpRight size={16} />
           </motion.a>
         </div>
