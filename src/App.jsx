@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import CustomCursor from './components/ui/CustomCursor';
 import ScrollProgress from './components/ui/ScrollProgress';
+import LiveBackground from './components/ui/LiveBackground';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -17,10 +18,11 @@ function App() {
     <ThemeProvider>
       <MotionConfig reducedMotion="user">
         <div className="min-h-screen overflow-x-hidden bg-paper text-ink dark:bg-night dark:text-paper">
+          <LiveBackground />
           <ScrollProgress />
           <CustomCursor />
           <Navbar />
-          <main>
+          <main className="relative z-10">
             <Hero />
             <About />
             <Skills />
