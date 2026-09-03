@@ -4,7 +4,7 @@ import { ArrowUpRight, BriefcaseBusiness, MapPin, Sparkles } from 'lucide-react'
 
 const baseUrl = import.meta.env.BASE_URL;
 const profilePhoto = `${baseUrl}experience/portrait.jpg`;
-const profileFallback = 'https://avatars.githubusercontent.com/u/152506152?v=4';
+const profileFallback = 'https://github.com/Swaroop772.png';
 
 const internships = [
   { role: 'Backend Engineering Intern', company: 'C1X Inc.', period: 'Jan 2026 – Present', mode: 'Onsite', current: true, accent: '#006f68', image: `${baseUrl}experience/backend.svg`, buildLabel: 'Current engineering work', build: 'Backend Systems', buildDescription: 'Production-oriented APIs, services and backend architecture.', focus: ['NestJS', 'REST APIs', 'Backend Architecture'], points: ['Building scalable backend systems with NestJS and RESTful APIs.', 'Working with modern backend architecture patterns and cloud deployment.', 'Developing reliable APIs and services for production applications.'] },
