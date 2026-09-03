@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight, Github, FileText } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
-const profilePhoto = 'https://avatars.githubusercontent.com/u/152506439?v=4';
+const profilePhoto = 'https://github.com/Swaroop772.png?size=640';
 
 const Hero = () => (
   <section id="home" className="relative min-h-screen overflow-hidden border-b border-black/10 dark:border-white/10">
