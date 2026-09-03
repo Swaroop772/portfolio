@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, BriefcaseBusiness, MapPin, Sparkles } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
-const profilePhoto = `${baseUrl}experience/portrait.jpg`;
 const profileFallback = 'https://github.com/Swaroop772.png';
 
 const internships = [
@@ -20,7 +19,7 @@ const Experience = () => (
     <div className="section-shell relative z-10">
       <motion.header initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7 }} className="grid gap-8 border-b border-black/10 pb-12 dark:border-white/10 lg:grid-cols-[220px_1fr] lg:gap-12 lg:items-end">
         <motion.div initial={{ opacity: 0, scale: .96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7 }} className="relative overflow-hidden border border-black/10 bg-surface dark:border-white/10 dark:bg-[#181818]">
-          <img src={profilePhoto} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = profileFallback; }} alt="Portrait of Swaroop Kurapati" className="aspect-[7/10] w-full object-cover object-center transition-transform duration-700 hover:scale-105" />
+          <img src={profileFallback} alt="Portrait of Swaroop Kurapati" className="aspect-[7/10] w-full object-cover object-center transition-transform duration-700 hover:scale-105" referrerPolicy="no-referrer" />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent p-5 text-white"><p className="text-[9px] font-bold uppercase tracking-[.2em] text-white/60">The builder</p><p className="mt-1 text-xl font-black tracking-[-.04em]">Build. Learn. Improve.</p></div>
         </motion.div>
         <div className="grid gap-8 md:grid-cols-[1fr_.52fr] md:items-end"><div><div className="flex flex-wrap items-center gap-3"><p className="text-xs font-bold uppercase tracking-[.2em] text-black/40 dark:text-white/40">Experience</p><span className="rounded-full border border-black/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-black/35 dark:border-white/10 dark:text-white/30">2025–present</span></div><h2 className="mt-5 max-w-4xl text-[clamp(3.5rem,7.5vw,7.2rem)] font-black leading-[.82] tracking-[-.075em]">Where I learned<br />to <span className="text-coral dark:text-[#ff7667]">ship.</span></h2></div><div className="max-w-md"><p className="text-sm leading-7 text-black/50 dark:text-white/50">A timeline of hands-on experience, paired with the builds and engineering work that best represent what I worked on.</p><div className="mt-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.18em] text-black/30 dark:text-white/30"><BriefcaseBusiness size={14}/><span>Experience + builds</span></div></div></div>
