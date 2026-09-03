@@ -86,17 +86,27 @@ const Experience = () => (
     <div className="pointer-events-none absolute bottom-24 left-[-12rem] h-80 w-80 rounded-full bg-teal/10 blur-[110px] dark:bg-teal/10" aria-hidden="true" />
 
     <div className="section-shell relative z-10">
-      <motion.header initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7 }} className="grid gap-10 border-b border-black/10 pb-12 dark:border-white/10 md:grid-cols-[1fr_.5fr] md:items-end">
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="text-xs font-bold uppercase tracking-[.2em] text-black/40 dark:text-white/40">Experience</p>
-            <span className="rounded-full border border-black/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-black/35 dark:border-white/10 dark:text-white/30">2025–present</span>
+      <motion.header initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7 }} className="grid gap-8 border-b border-black/10 pb-12 dark:border-white/10 lg:grid-cols-[220px_1fr] lg:gap-12 lg:items-end">
+        <motion.div initial={{ opacity: 0, scale: .96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: .3 }} transition={{ duration: .7 }} className="relative overflow-hidden border border-black/10 bg-surface dark:border-white/10 dark:bg-[#181818]">
+          <img src={`${baseUrl}experience/swaroop-portrait.svg`} alt="Portrait" className="aspect-[7/10] w-full object-cover transition-transform duration-700 hover:scale-105" />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent p-5 text-white">
+            <p className="text-[9px] font-bold uppercase tracking-[.2em] text-white/60">The builder</p>
+            <p className="mt-1 text-xl font-black tracking-[-.04em]">Build. Learn. Improve.</p>
           </div>
-          <h2 className="mt-5 max-w-4xl text-[clamp(3.5rem,7.5vw,7.2rem)] font-black leading-[.82] tracking-[-.075em]">Where I learned<br />to <span className="text-coral dark:text-[#ff7667]">ship.</span></h2>
-        </div>
-        <div className="max-w-md">
-          <p className="text-sm leading-7 text-black/50 dark:text-white/50">A timeline of hands-on experience, paired with the builds and engineering work that best represent what I worked on.</p>
-          <div className="mt-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.18em] text-black/30 dark:text-white/30"><BriefcaseBusiness size={14} /><span>Experience + builds</span></div>
+        </motion.div>
+
+        <div className="grid gap-8 md:grid-cols-[1fr_.52fr] md:items-end">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="text-xs font-bold uppercase tracking-[.2em] text-black/40 dark:text-white/40">Experience</p>
+              <span className="rounded-full border border-black/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-black/35 dark:border-white/10 dark:text-white/30">2025–present</span>
+            </div>
+            <h2 className="mt-5 max-w-4xl text-[clamp(3.5rem,7.5vw,7.2rem)] font-black leading-[.82] tracking-[-.075em]">Where I learned<br />to <span className="text-coral dark:text-[#ff7667]">ship.</span></h2>
+          </div>
+          <div className="max-w-md">
+            <p className="text-sm leading-7 text-black/50 dark:text-white/50">A timeline of hands-on experience, paired with the builds and engineering work that best represent what I worked on.</p>
+            <div className="mt-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.18em] text-black/30 dark:text-white/30"><BriefcaseBusiness size={14} /><span>Experience + builds</span></div>
+          </div>
         </div>
       </motion.header>
 
@@ -106,44 +116,12 @@ const Experience = () => (
           {internships.map((item, index) => (
             <motion.article key={`${item.company}-${item.role}`} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.07, duration: 0.55 }} className="group relative md:pl-10">
               <span className="absolute left-[-1px] top-10 hidden h-4 w-4 rounded-full border-[4px] border-paper dark:border-night md:block" style={{ backgroundColor: item.accent }} />
-
               <div className={`relative overflow-hidden border p-4 transition-all duration-300 sm:p-5 lg:p-6 ${item.current ? 'border-teal/30 bg-teal/[.06] shadow-[0_18px_60px_rgba(0,0,0,.08)] dark:border-[#4fd1c5]/25 dark:bg-[#4fd1c5]/[.06] dark:shadow-[0_18px_60px_rgba(0,0,0,.18)]' : 'border-black/10 bg-white/40 hover:border-black/15 hover:bg-white/70 dark:border-white/10 dark:bg-white/[.018] dark:hover:border-white/15 dark:hover:bg-white/[.035]'}`}>
                 <div className="grid gap-6 lg:grid-cols-[150px_minmax(210px,260px)_1fr_.9fr] lg:items-start lg:gap-8">
-                  <div className="flex justify-between gap-5 lg:block">
-                    <div>
-                      <p className="font-mono text-xs uppercase tracking-[.14em] text-black/40 dark:text-white/35">{item.period}</p>
-                      <div className="mt-3 inline-flex items-center gap-2 text-[10px] uppercase tracking-[.15em] text-black/35 dark:text-white/30"><MapPin size={12} />{item.mode}</div>
-                    </div>
-                    {item.current && <span className="lg:hidden inline-flex h-fit items-center gap-1.5 rounded-full border border-teal/25 bg-teal/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-teal dark:border-[#4fd1c5]/25 dark:bg-[#4fd1c5]/10 dark:text-[#4fd1c5]"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />Current</span>}
-                  </div>
-
-                  <div className="group/build relative overflow-hidden border border-black/10 bg-black/5 dark:border-white/10 dark:bg-black/20">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" aria-hidden="true" />
-                    <img src={item.image} alt={`${item.build} visual`} loading="lazy" className="aspect-[1.05/1] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                    <div className="absolute inset-x-4 bottom-4 text-white">
-                      <p className="text-[9px] font-bold uppercase tracking-[.18em] text-white/60">{item.buildLabel}</p>
-                      <div className="mt-1 flex items-end justify-between gap-3">
-                        <div>
-                          <h3 className="text-xl font-black tracking-[-.04em]">{item.build}</h3>
-                          <p className="mt-1 text-[11px] leading-4 text-white/65">{item.buildDescription}</p>
-                        </div>
-                        {item.buildLink && <a href={item.buildLink} target="_blank" rel="noreferrer" aria-label={`Open ${item.build} on GitHub`} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 hover:rotate-45"><ArrowUpRight size={15} /></a>}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex flex-wrap items-start gap-3">
-                      <div>
-                        <h3 className="text-2xl font-black tracking-[-.045em] transition-colors group-hover:text-coral dark:group-hover:text-[#ff7667] sm:text-3xl">{item.role}</h3>
-                        <p className="mt-2 text-sm font-semibold" style={{ color: item.accent }}>{item.company}</p>
-                      </div>
-                      {item.current && <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-teal/25 bg-teal/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-teal dark:border-[#4fd1c5]/25 dark:bg-[#4fd1c5]/10 dark:text-[#4fd1c5]"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />Current</span>}
-                    </div>
-                    <div className="mt-5 flex flex-wrap gap-2">{item.focus.map((tag) => <motion.span key={tag} whileHover={{ y: -2 }} className="rounded-full border border-black/10 px-3 py-1.5 text-[10px] text-black/50 transition-colors group-hover:border-black/15 dark:border-white/10 dark:text-white/50 dark:group-hover:border-white/15">{tag}</motion.span>)}</div>
-                  </div>
-
-                  <ul className="space-y-3 self-start text-sm leading-6 text-black/60 dark:text-white/55">{item.points.map((point) => <li key={point} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0" style={{ backgroundColor: item.accent }} /><span>{point}</span></li>)}</ul>
+                  <div className="flex justify-between gap-5 lg:block"><div><p className="font-mono text-xs uppercase tracking-[.14em] text-black/40 dark:text-white/35">{item.period}</p><div className="mt-3 inline-flex items-center gap-2 text-[10px] uppercase tracking-[.15em] text-black/35 dark:text-white/30"><MapPin size={12} />{item.mode}</div></div>{item.current && <span className="lg:hidden inline-flex h-fit items-center gap-1.5 rounded-full border border-teal/25 bg-teal/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-teal dark:border-[#4fd1c5]/25 dark:bg-[#4fd1c5]/10 dark:text-[#4fd1c5]"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />Current</span>}</div>
+                  <div className="group/build relative overflow-hidden border border-black/10 bg-black/5 dark:border-white/10 dark:bg-black/20"><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" /><img src={item.image} alt={`${item.build} visual`} loading="lazy" className="aspect-[1.05/1] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" /><div className="absolute inset-x-4 bottom-4 text-white"><p className="text-[9px] font-bold uppercase tracking-[.18em] text-white/60">{item.buildLabel}</p><div className="mt-1 flex items-end justify-between gap-3"><div><h3 className="text-xl font-black tracking-[-.04em]">{item.build}</h3><p className="mt-1 text-[11px] leading-4 text-white/65">{item.buildDescription}</p></div>{item.buildLink && <a href={item.buildLink} target="_blank" rel="noreferrer" aria-label={`Open ${item.build} on GitHub`} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 hover:rotate-45"><ArrowUpRight size={15} /></a>}</div></div></div>
+                  <div><div className="flex flex-wrap items-start gap-3"><div><h3 className="text-2xl font-black tracking-[-.045em] transition-colors group-hover:text-coral dark:group-hover:text-[#ff7667] sm:text-3xl">{item.role}</h3><p className="mt-2 text-sm font-semibold" style={{ color: item.accent }}>{item.company}</p></div>{item.current && <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-teal/25 bg-teal/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.14em] text-teal dark:border-[#4fd1c5]/25 dark:bg-[#4fd1c5]/10 dark:text-[#4fd1c5]"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />Current</span>}</div><div className="mt-5 flex flex-wrap gap-2">{item.focus.map(tag => <motion.span key={tag} whileHover={{ y: -2 }} className="rounded-full border border-black/10 px-3 py-1.5 text-[10px] text-black/50 transition-colors group-hover:border-black/15 dark:border-white/10 dark:text-white/50 dark:group-hover:border-white/15">{tag}</motion.span>)}</div></div>
+                  <ul className="space-y-3 self-start text-sm leading-6 text-black/60 dark:text-white/55">{item.points.map(point => <li key={point} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0" style={{ backgroundColor: item.accent }} /><span>{point}</span></li>)}</ul>
                 </div>
               </div>
             </motion.article>
@@ -151,12 +129,7 @@ const Experience = () => (
         </div>
       </div>
 
-      <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-14 overflow-hidden border border-black/10 bg-surface p-7 dark:border-white/10 dark:bg-[#181818] sm:p-9">
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-          <div><div className="flex items-center gap-2 text-amber dark:text-[#f0bd58]"><Sparkles size={15} /><span className="text-[10px] font-bold uppercase tracking-[.2em]">Next chapter</span></div><h3 className="mt-3 text-2xl font-black tracking-[-.04em] sm:text-3xl">Looking for the next hard problem.</h3><p className="mt-2 max-w-2xl text-sm leading-6 text-black/50 dark:text-white/45">Backend systems, AI products and developer-focused applications are where I want to keep growing.</p></div>
-          <motion.a whileHover={{ x: 5 }} whileTap={{ scale: 0.98 }} href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.17em] text-teal dark:text-[#38cfc2]">Let&apos;s talk <ArrowUpRight size={16} /></motion.a>
-        </div>
-      </motion.div>
+      <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-14 overflow-hidden border border-black/10 bg-surface p-7 dark:border-white/10 dark:bg-[#181818] sm:p-9"><div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><div><div className="flex items-center gap-2 text-amber dark:text-[#f0bd58]"><Sparkles size={15} /><span className="text-[10px] font-bold uppercase tracking-[.2em]">Next chapter</span></div><h3 className="mt-3 text-2xl font-black tracking-[-.04em] sm:text-3xl">Looking for the next hard problem.</h3><p className="mt-2 max-w-2xl text-sm leading-6 text-black/50 dark:text-white/45">Backend systems, AI products and developer-focused applications are where I want to keep growing.</p></div><motion.a whileHover={{ x: 5 }} whileTap={{ scale: 0.98 }} href="#contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.17em] text-teal dark:text-[#38cfc2]">Let&apos;s talk <ArrowUpRight size={16} /></motion.a></div></motion.div>
     </div>
   </section>
 );
