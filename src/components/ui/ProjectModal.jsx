@@ -1,127 +1,65 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Github, ExternalLink, Code } from 'lucide-react';
+import { X, Github, ExternalLink, Code, ArrowUpRight } from 'lucide-react';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
+    useEffect(() => {
+        if (!isOpen) return undefined;
+        const handleKeyDown = event => {
+            if (event.key === 'Escape') onClose();
+        };
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, onClose]);
+
     if (!project) return null;
+
+    const accent = project.accent === 'coral' ? 'text-coral' : 'text-teal';
+    const accentBorder = project.accent === 'coral' ? 'border-coral/30' : 'border-teal/30';
+    const accentBg = project.accent === 'coral' ? 'bg-coral/10' : 'bg-teal/10';
 
     return (
         <AnimatePresence>
             {isOpen && (
-                <>
-                    {/* Backdrop */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
-                        className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
-                    />
-
-                    {/* Modal Content */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none"
-                    >
-                        <div className="bg-white dark:bg-[#0a0a16] border border-slate-200 dark:border-glass-border w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl relative pointer-events-auto custom-scrollbar">
-
-                            {/* Close Button */}
-                            <button
-                                onClick={onClose}
-                                className="absolute top-4 right-4 p-2 bg-slate-100 dark:bg-white/10 rounded-full hover:bg-slate-200 dark:hover:bg-white/20 transition-colors z-10"
-                            >
-                                <X size={20} className="text-slate-800 dark:text-white" />
-                            </button>
-
-                            {/* Header gradient banner */}
-                            <div className={`h-48 md:h-64 w-full bg-gradient-to-br ${project.gradient || 'from-blue-600 to-purple-600'} relative overflow-hidden flex items-center justify-center`}>
-                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
-                                <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ delay: 0.2 }}
-                                    className="text-center p-6"
-                                >
-                                    <div className="inline-block p-4 rounded-2xl bg-white/10 backdrop-blur-md mb-4 border border-white/20 shadow-xl">
-                                        {React.cloneElement(project.icon, { size: 48, className: 'text-white' })}
-                                    </div>
-                                    <h2 className="font-display text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-                                        {project.title}
-                                    </h2>
-                                </motion.div>
-                            </div>
-
-                            <div className="p-8 md:p-10 space-y-8">
-
-                                {/* Tags + Links */}
-                                <div className="flex flex-wrap gap-4 justify-between items-center border-b border-slate-200 dark:border-white/10 pb-8">
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-3 py-1 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-gray-300 text-xs font-mono rounded-full">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <a href={project.github} target="_blank" rel="noopener noreferrer"
-                                            className="flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-black font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm">
-                                            <Github size={16} /> GitHub
-                                        </a>
-                                        {project.demo && project.demo !== '#' && (
-                                            <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                                                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm">
-                                                <ExternalLink size={16} /> Live Demo
-                                            </a>
-                                        )}
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+                    <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="absolute inset-0 bg-black/75 backdrop-blur-md" aria-label="Close project details" />
+                    <motion.div initial={{ opacity: 0, y: 18, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12, scale: .985 }} transition={{ type: 'spring', stiffness: 280, damping: 26 }} className="relative z-10 flex h-auto max-h-[calc(100dvh-2rem)] w-full max-w-3xl min-h-0 flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-ink shadow-2xl shadow-black/40 sm:max-h-[82dvh]">
+                        <button onClick={onClose} className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/40 text-slate-300 backdrop-blur transition-colors hover:border-teal/40 hover:text-white" aria-label="Close project details"><X size={17} /></button>
+                        <div className={`relative min-h-40 shrink-0 overflow-hidden border-b border-white/10 p-6 sm:min-h-48 sm:p-8 ${accentBg}`}>
+                            <div className="absolute inset-0 pattern-dots opacity-25" />
+                            <motion.div animate={{ rotate: 360 }} transition={{ duration: 28, repeat: Infinity, ease: 'linear' }} className={`absolute -right-12 -top-14 h-48 w-48 rounded-full border ${accentBorder}`} />
+                            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .08 }} className="relative max-w-2xl">
+                                <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl border ${accentBorder} bg-black/20 ${accent}`}>{React.cloneElement(project.icon, { size: 19 })}</div>
+                                <p className={`text-[11px] font-semibold uppercase tracking-[.18em] ${accent}`}>{project.type}</p>
+                                <h2 id="project-modal-title" className="mt-1 text-3xl font-black tracking-tight text-white sm:text-4xl">{project.title}</h2>
+                            </motion.div>
+                        </div>
+                        <div className="custom-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain">
+                            <div className="space-y-6 p-6 sm:space-y-7 sm:p-8">
+                                <div className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
+                                    <div className="flex flex-wrap gap-2">{project.tags.map(tag => <span key={tag} className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-slate-400">{tag}</span>)}</div>
+                                    <div className="flex shrink-0 gap-2.5">
+                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-white px-3.5 py-2 text-xs font-bold text-black transition-opacity hover:opacity-90"><Github size={14} /> GitHub</a>
+                                        {project.demo && project.demo !== '#' && <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-3.5 py-2 text-xs font-bold text-white transition-colors hover:border-teal/40 hover:text-teal"><ExternalLink size={14} /> Live demo</a>}
                                     </div>
                                 </div>
-
-                                {/* Content grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    {/* Left: Description + Challenge */}
-                                    <div className="md:col-span-2 space-y-8">
-                                        <div>
-                                            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                                                <span className="w-1 h-6 bg-blue-500 rounded-full" />
-                                                Project Overview
-                                            </h3>
-                                            <p className="text-slate-600 dark:text-gray-300 leading-relaxed text-base">
-                                                {project.fullDescription || project.description}
-                                            </p>
-                                        </div>
-
-                                        <div className="bg-slate-50 dark:bg-white/5 rounded-2xl p-6 border border-slate-200 dark:border-white/5">
-                                            <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white mb-3">
-                                                Key Challenge &amp; Solution
-                                            </h3>
-                                            <p className="text-slate-600 dark:text-gray-400 leading-relaxed text-sm">
-                                                {project.challenge || 'One of the detailed technical challenges for this project was optimizing the real-time data processing pipeline. By implementing efficient caching strategies and using a more robust state management solution, latency was reduced by 40%.'}
-                                            </p>
-                                        </div>
+                                <div className="grid gap-8 md:grid-cols-[1.3fr_.7fr]">
+                                    <div className="space-y-6">
+                                        <div><p className={`text-[11px] font-semibold uppercase tracking-[.18em] ${accent}`}>Overview</p><p className="mt-2.5 text-sm leading-6 text-slate-300 sm:text-[15px]">{project.fullDescription || project.description}</p></div>
+                                        <div className="border-l-2 border-coral/40 pl-4"><p className="text-[11px] font-semibold uppercase tracking-[.18em] text-coral">Challenge & solution</p><p className="mt-2.5 text-sm leading-6 text-slate-500">{project.challenge}</p></div>
                                     </div>
-
-                                    {/* Right: Key Features */}
-                                    <div className="space-y-4">
-                                        <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                            <Code size={20} className="text-purple-500" />
-                                            Key Features
-                                        </h3>
-                                        <ul className="space-y-3">
-                                            {(project.features || ['Real-time Data Analysis', 'Responsive UI Design', 'Secure Authentication', 'Cloud Integration']).map((feature, idx) => (
-                                                <li key={idx} className="flex items-start gap-3 text-slate-600 dark:text-gray-400 text-sm">
-                                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-                                                    {feature}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    <div><div className="flex items-center gap-2"><Code size={15} className={accent} /><p className="text-[11px] font-semibold uppercase tracking-[.18em] text-white">Key features</p></div><ul className="mt-4 space-y-3">{(project.features || []).map(feature => <li key={feature} className="flex items-start gap-2.5 text-sm leading-5.5 text-slate-400"><span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${project.accent === 'coral' ? 'bg-coral' : 'bg-teal'}`} />{feature}</li>)}</ul></div>
                                 </div>
+                                <div className="flex items-center justify-between border-t border-white/10 pt-5 text-[10px] uppercase tracking-[.14em] text-slate-600"><span>Built with {project.tags.slice(0, 2).join(' · ')}</span><a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-slate-400 transition-colors hover:text-teal">View source <ArrowUpRight size={12} /></a></div>
                             </div>
                         </div>
                     </motion.div>
-                </>
+                </motion.div>
             )}
         </AnimatePresence>
     );
