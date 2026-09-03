@@ -1,0 +1,1 @@
+Profile image is stored separately as a binary asset.
