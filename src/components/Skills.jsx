@@ -3,10 +3,30 @@ import { motion } from 'framer-motion';
 import { Code2, Brain, Wrench, Layers } from 'lucide-react';
 
 const groups = [
-  { title: 'Backend', icon: Layers, description: 'APIs, services and application architecture', items: ['NestJS', 'Node.js', 'FastAPI', 'REST APIs', 'Python', 'SQL'] },
-  { title: 'AI / ML', icon: Brain, description: 'Models and practical AI-powered applications', items: ['Machine Learning', 'LLMs', 'NLP', 'GenAI', 'LangChain', 'Streamlit'] },
-  { title: 'Frontend', icon: Code2, description: 'Responsive interfaces and product experiences', items: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Figma'] },
-  { title: 'Engineering', icon: Wrench, description: 'Tools and fundamentals I use to ship', items: ['Git & GitHub', 'Docker', 'MySQL', 'Linux', 'Data Structures', 'Algorithms'] },
+  {
+    title: 'Full-stack',
+    icon: Layers,
+    description: 'End-to-end web applications, APIs and application architecture',
+    items: ['React', 'Node.js', 'NestJS', 'TypeScript', 'REST APIs', 'API Integration', 'Authentication', 'Responsive UI'],
+  },
+  {
+    title: 'AI / ML',
+    icon: Brain,
+    description: 'Machine learning and practical AI-powered applications',
+    items: ['Python', 'Machine Learning', 'LLMs', 'NLP', 'GenAI', 'LangChain', 'Model Evaluation', 'Streamlit'],
+  },
+  {
+    title: 'Engineering',
+    icon: Wrench,
+    description: 'Reliable software development, data and delivery practices',
+    items: ['Clean Code', 'Problem Solving', 'System Design', 'SQL', 'MySQL', 'Git & GitHub', 'Docker', 'Linux'],
+  },
+  {
+    title: 'Frontend',
+    icon: Code2,
+    description: 'Responsive interfaces and polished digital experiences',
+    items: ['JavaScript', 'HTML5', 'CSS3', 'React', 'Figma', 'Flexbox', 'CSS Grid', 'Accessibility'],
+  },
 ];
 
 export default function Skills() {
@@ -17,7 +37,7 @@ export default function Skills() {
           <p className="section-kicker">Skills</p>
           <div className="mt-4 grid gap-6 md:grid-cols-[1fr_.75fr] md:items-end">
             <h2 className="section-heading">A practical toolkit for<br /><span>building and shipping.</span></h2>
-            <p className="text-sm leading-6 text-black/50 dark:text-white/50">The technologies I use most across backend engineering, AI/ML, frontend development and everyday software engineering.</p>
+            <p className="text-sm leading-6 text-black/50 dark:text-white/50">The technologies and engineering practices I use across full-stack development, AI/ML, frontend work and software engineering.</p>
           </div>
         </motion.div>
         <div className="mt-14 grid gap-px border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 sm:grid-cols-2">
