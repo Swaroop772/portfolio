@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight, Github, FileText } from 'lucide-react';
-import profilePhoto from '../assets/profilePhoto';
 
 const baseUrl = import.meta.env.BASE_URL;
+const profilePhoto = 'https://avatars.githubusercontent.com/u/152506439?v=4';
 
 const Hero = () => (
   <section id="home" className="relative min-h-screen overflow-hidden border-b border-black/10 dark:border-white/10">
